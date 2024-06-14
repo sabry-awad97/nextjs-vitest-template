@@ -1,5 +1,7 @@
+import Providers from '@/providers';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { PropsWithChildren } from 'react';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -9,15 +11,13 @@ export const metadata: Metadata = {
   description: 'Next.js Template with Typescript and Vitest',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main>{children}</main>
+        <Providers>
+          <main>{children}</main>
+        </Providers>
       </body>
     </html>
   );
